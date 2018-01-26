@@ -8,22 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		2A2405CB201B5DFB0039493F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2405CA201B5DFB0039493F /* AppDelegate.swift */; };
-		2A2405CD201B5DFB0039493F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2405CC201B5DFB0039493F /* ViewController.swift */; };
-		2A2405D0201B5DFB0039493F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A2405CE201B5DFB0039493F /* Main.storyboard */; };
+		2A2405D0201B5DFB0039493F /* MTMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A2405CE201B5DFB0039493F /* MTMain.storyboard */; };
 		2A2405D3201B5DFB0039493F /* MaxTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A2405D1201B5DFB0039493F /* MaxTest.xcdatamodeld */; };
 		2A2405D5201B5DFB0039493F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A2405D4201B5DFB0039493F /* Assets.xcassets */; };
 		2A2405D8201B5DFB0039493F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A2405D6201B5DFB0039493F /* LaunchScreen.storyboard */; };
+		2A2405E4201B5ED10039493F /* MTApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2405E3201B5ED10039493F /* MTApiService.swift */; };
+		2A2405E6201B5EE30039493F /* MTNetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2405E5201B5EE30039493F /* MTNetworkingService.swift */; };
+		2A2405E8201B5F440039493F /* MTApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2405E7201B5F440039493F /* MTApplicationManager.swift */; };
+		2A2405EB201B79800039493F /* MTParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2405EA201B79800039493F /* MTParser.swift */; };
+		2A2405ED201B7FC90039493F /* MTUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2405EC201B7FC90039493F /* MTUtils.swift */; };
+		2A2405F0201B84B20039493F /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2405EF201B84B20039493F /* Article.swift */; };
+		2A2405F3201B88D50039493F /* MTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2405F2201B88D50039493F /* MTMainViewController.swift */; };
+		2A2405F5201B8EEE0039493F /* MTArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2405F4201B8EEE0039493F /* MTArticleCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2A2405C7201B5DFB0039493F /* MaxTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaxTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A2405CA201B5DFB0039493F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2A2405CC201B5DFB0039493F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		2A2405CF201B5DFB0039493F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2A2405CF201B5DFB0039493F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MTMain.storyboard; sourceTree = "<group>"; };
 		2A2405D2201B5DFB0039493F /* MaxTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MaxTest.xcdatamodel; sourceTree = "<group>"; };
 		2A2405D4201B5DFB0039493F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A2405D7201B5DFB0039493F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A2405D9201B5DFB0039493F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A2405E3201B5ED10039493F /* MTApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTApiService.swift; sourceTree = "<group>"; };
+		2A2405E5201B5EE30039493F /* MTNetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTNetworkingService.swift; sourceTree = "<group>"; };
+		2A2405E7201B5F440039493F /* MTApplicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTApplicationManager.swift; sourceTree = "<group>"; };
+		2A2405EA201B79800039493F /* MTParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTParser.swift; sourceTree = "<group>"; };
+		2A2405EC201B7FC90039493F /* MTUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTUtils.swift; sourceTree = "<group>"; };
+		2A2405EF201B84B20039493F /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		2A2405F2201B88D50039493F /* MTMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTMainViewController.swift; sourceTree = "<group>"; };
+		2A2405F4201B8EEE0039493F /* MTArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTArticleCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +70,78 @@
 		2A2405C9201B5DFB0039493F /* MaxTest */ = {
 			isa = PBXGroup;
 			children = (
-				2A2405CA201B5DFB0039493F /* AppDelegate.swift */,
-				2A2405CC201B5DFB0039493F /* ViewController.swift */,
-				2A2405CE201B5DFB0039493F /* Main.storyboard */,
+				2A2405EE201B84960039493F /* Models */,
+				2A2405E9201B79670039493F /* Utils */,
+				2A2405E2201B5EB70039493F /* Services */,
+				2A2405E0201B5E7B0039493F /* ApplicationLayer */,
+				2A2405E1201B5E910039493F /* Presentation */,
+				2A2405DF201B5E630039493F /* SupportingFiles */,
+			);
+			path = MaxTest;
+			sourceTree = "<group>";
+		};
+		2A2405DF201B5E630039493F /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
 				2A2405D4201B5DFB0039493F /* Assets.xcassets */,
 				2A2405D6201B5DFB0039493F /* LaunchScreen.storyboard */,
 				2A2405D9201B5DFB0039493F /* Info.plist */,
 				2A2405D1201B5DFB0039493F /* MaxTest.xcdatamodeld */,
 			);
-			path = MaxTest;
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		2A2405E0201B5E7B0039493F /* ApplicationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				2A2405CA201B5DFB0039493F /* AppDelegate.swift */,
+				2A2405E7201B5F440039493F /* MTApplicationManager.swift */,
+			);
+			path = ApplicationLayer;
+			sourceTree = "<group>";
+		};
+		2A2405E1201B5E910039493F /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				2A2405F1201B88BA0039493F /* MainScreen */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		2A2405E2201B5EB70039493F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2A2405E3201B5ED10039493F /* MTApiService.swift */,
+				2A2405E5201B5EE30039493F /* MTNetworkingService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2A2405E9201B79670039493F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2A2405EA201B79800039493F /* MTParser.swift */,
+				2A2405EC201B7FC90039493F /* MTUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		2A2405EE201B84960039493F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2A2405EF201B84B20039493F /* Article.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2A2405F1201B88BA0039493F /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				2A2405CE201B5DFB0039493F /* MTMain.storyboard */,
+				2A2405F2201B88D50039493F /* MTMainViewController.swift */,
+				2A2405F4201B8EEE0039493F /* MTArticleCell.swift */,
+			);
+			path = MainScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,7 +205,7 @@
 			files = (
 				2A2405D8201B5DFB0039493F /* LaunchScreen.storyboard in Resources */,
 				2A2405D5201B5DFB0039493F /* Assets.xcassets in Resources */,
-				2A2405D0201B5DFB0039493F /* Main.storyboard in Resources */,
+				2A2405D0201B5DFB0039493F /* MTMain.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,8 +216,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A2405CD201B5DFB0039493F /* ViewController.swift in Sources */,
+				2A2405E8201B5F440039493F /* MTApplicationManager.swift in Sources */,
+				2A2405F0201B84B20039493F /* Article.swift in Sources */,
+				2A2405ED201B7FC90039493F /* MTUtils.swift in Sources */,
+				2A2405F5201B8EEE0039493F /* MTArticleCell.swift in Sources */,
+				2A2405EB201B79800039493F /* MTParser.swift in Sources */,
+				2A2405F3201B88D50039493F /* MTMainViewController.swift in Sources */,
 				2A2405D3201B5DFB0039493F /* MaxTest.xcdatamodeld in Sources */,
+				2A2405E4201B5ED10039493F /* MTApiService.swift in Sources */,
+				2A2405E6201B5EE30039493F /* MTNetworkingService.swift in Sources */,
 				2A2405CB201B5DFB0039493F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,12 +232,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		2A2405CE201B5DFB0039493F /* Main.storyboard */ = {
+		2A2405CE201B5DFB0039493F /* MTMain.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2A2405CF201B5DFB0039493F /* Base */,
 			);
-			name = Main.storyboard;
+			name = MTMain.storyboard;
 			sourceTree = "<group>";
 		};
 		2A2405D6201B5DFB0039493F /* LaunchScreen.storyboard */ = {
