@@ -21,3 +21,11 @@ struct MTErrorCode {
     static let noJSONError = -1111
     static let badURLError = -2222
 }
+
+struct CoreDataUtils {
+    
+    static let cacheName = "articles"
+    static let defaultName = "Article"
+    
+    static let defaultSortDescriptors = [NSSortDescriptor(key: "timeStamp", ascending: true)]
+}

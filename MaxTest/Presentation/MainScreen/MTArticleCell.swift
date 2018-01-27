@@ -10,15 +10,13 @@ import UIKit
 
 class MTArticleCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var articleImageView: UIImageView!
+    @IBOutlet weak var articleTitleLabel: UILabel!
+    
+    var article: Article! {
+        didSet {
+            
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    
 }
