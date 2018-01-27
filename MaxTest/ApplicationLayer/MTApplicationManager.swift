@@ -19,8 +19,4 @@ class MTApplicationManager {
         return MTApiService()
     }()
     
-    lazy var coreDataService: MTCoreDataService = {
-        return MTCoreDataService()
-    }()
-    
 }

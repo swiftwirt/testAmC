@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        applicationManager.coreDataService.saveContext()
+        applicationManager.apiService.coreDataService.saveContext()
     }
 
 }

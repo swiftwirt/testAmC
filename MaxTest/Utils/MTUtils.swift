@@ -8,6 +8,13 @@
 
 import Foundation
 
+func performOnMainAsync(_ task: @escaping () -> Void)
+{
+    DispatchQueue.main.async {
+        task()
+    }
+}
+
 struct MTErrorMessage {
     
     // Networking module

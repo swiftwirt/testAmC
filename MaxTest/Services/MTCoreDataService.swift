@@ -18,9 +18,11 @@ class MTCoreDataService {
         static let contentUrl = "content_url"
     }
     
-    func updateDataBase(with array: [[String: Any]])
+    // API
+    
+    func refreshDataBase(with array: [[String: Any]], completionHandler: @escaping () -> ())
     {
-        clearDataBaseStore()
+        clearDataBase()
         
         for dictionary in array {
             let newItem = NSEntityDescription.insertNewObject(forEntityName: CoreDataUtils.defaultName, into: context) as! Article
@@ -37,9 +39,10 @@ class MTCoreDataService {
         }
         
         saveContext()
+        completionHandler()
     }
     
-    func clearDataBaseStore()
+    private func clearDataBase()
     {
         let entities = managedObjectModel.entities
         for entity in entities {
@@ -51,9 +54,9 @@ class MTCoreDataService {
                 print(error)
             }
         }
+        
+        saveContext()
     }
-    
-    // API
     
     func getFetchResultsController(for entityName: String = CoreDataUtils.defaultName, with sortDescriptors: [NSSortDescriptor] = CoreDataUtils.defaultSortDescriptors, ascending: Bool = true) -> NSFetchedResultsController<NSFetchRequestResult>
     {

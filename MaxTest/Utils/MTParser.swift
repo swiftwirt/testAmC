@@ -10,9 +10,9 @@ import Foundation
 
 class MTParser {
     
-    static func parseJSON(data: Data) -> [String: Any]? {
+    static func parseJSON(data: Data) -> [[String: Any]]? {
         do {
-            return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            return try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]]
         } catch {
             print("JSON Error: \(error)")
             return nil

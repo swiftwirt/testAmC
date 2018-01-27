@@ -74,15 +74,15 @@ class MTNetworkingService {
             }
             
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,
-                let data = data, let dictionary = MTParser.parseJSON(data: data) {
+                let data = data {
                 
-                completionHandler(RequestRusult.success(dictionary))
+                completionHandler(RequestRusult.success(data))
             } else {
                 let error = NSError(domain: MTErrorMessage.noJSONErrorDomain, code: MTErrorCode.noJSONError, userInfo: nil)
                 completionHandler(RequestRusult.failure(error))
             }
             
-            DispatchQueue.main.async {
+            performOnMainAsync {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
         })
