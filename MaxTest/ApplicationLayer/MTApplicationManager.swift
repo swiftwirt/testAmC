@@ -15,8 +15,16 @@ class MTApplicationManager {
         return appDelegate.applicationManager
     }
     
+    var currentDevice: UIUserInterfaceIdiom {
+        return UIDevice.current.userInterfaceIdiom
+    }
+    
     lazy var apiService: MTApiService = {
         return MTApiService()
+    }()
+    
+    lazy var articleService: MTArticleService = {
+        return MTArticleService(apiService: apiService)
     }()
     
 }

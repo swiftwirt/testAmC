@@ -31,6 +31,11 @@ class MTNetworkingService {
             return EndPoint.baseLink + EndPoint.apiSpecs
         }
     }
+    
+    private var dataTask: URLSessionDataTask? = nil
+    private var badURLError: NSError {
+        return NSError(domain: MTErrorMessage.badURLErrorDomain, code: MTErrorCode.badURLError, userInfo: nil)
+    }
 
     func getArticles(completionHandler: @escaping (RequestRusult<Any>) -> ())
     {
@@ -42,7 +47,7 @@ class MTNetworkingService {
         performRequest(with: url, completionHandler: completionHandler)
     }
     
-    func getArticleDetails(id: Int, completionHandler: @escaping (RequestRusult<Any>) -> ())
+    func getArticleDetails(id: Int64, completionHandler: @escaping (RequestRusult<Any>) -> ())
     {
         guard let url = URL(string: EndPoint.articlesDetailsBasicLink + String(id)) else {
             completionHandler(RequestRusult.failure(badURLError))
@@ -52,10 +57,20 @@ class MTNetworkingService {
         performRequest(with: url, completionHandler: completionHandler)
     }
     
-    private var dataTask: URLSessionDataTask? = nil
-    
-    private var badURLError: NSError {
-        return NSError(domain: MTErrorMessage.badURLErrorDomain, code: MTErrorCode.badURLError, userInfo: nil)
+    func loadImageWithURL(url: URL, completionHandler: ((UIImage) -> ())? = nil) -> URLSessionDownloadTask
+    {
+        let session = URLSession.shared
+        let downloadTask = session.downloadTask(with: url) { url, response, error in
+            if error == nil, let url = url {
+                performOnMainAsync {
+                    if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+                        completionHandler?((image))
+                    }
+                }
+            }
+        }
+        downloadTask.resume()
+        return downloadTask
     }
     
     private func performRequest(with url: URL, completionHandler: @escaping (RequestRusult<Any>) -> ())

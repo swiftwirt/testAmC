@@ -53,6 +53,7 @@
                                 <connections>
                                     <outlet property="articleImageView" destination="ygF-2T-CrX" id="SNd-2l-T4r"/>
                                     <outlet property="articleTitleLabel" destination="YNH-ZB-Mek" id="FBh-YJ-Vcw"/>
+                                    <segue destination="eS5-3w-xMB" kind="show" identifier="SegueToDetails" id="qcv-pD-k01"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -63,6 +64,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Articles" id="kNq-94-FQC"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="V65-hb-kfd">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
                             <action selector="onPullToRefresh:" destination="qj6-bL-Mfj" eventType="valueChanged" id="hNf-5K-1kh"/>
@@ -73,13 +75,22 @@
             </objects>
             <point key="canvasLocation" x="277.60000000000002" y="104.7976011994003"/>
         </scene>
+        <!--MTDetails-->
+        <scene sceneID="rXi-Lb-m3y">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MTDetails" id="eS5-3w-xMB" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WeD-13-sQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="785" y="104"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="R49-wd-CPP">
             <objects>
                 <navigationController id="Udt-hg-1LZ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uJK-SY-JTu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="uJK-SY-JTu">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="qj6-bL-Mfj" kind="relationship" relationship="rootViewController" id="YQZ-fQ-yl0"/>

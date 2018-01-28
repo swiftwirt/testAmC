@@ -36,3 +36,8 @@ struct CoreDataUtils {
     
     static let defaultSortDescriptors = [NSSortDescriptor(key: "timeStamp", ascending: true)]
 }
+
+struct AnimationDuratiion {
+    
+    static let defaultFade = 0.4
+}

@@ -19,9 +19,11 @@
 		2A2405ED201B7FC90039493F /* MTUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2405EC201B7FC90039493F /* MTUtils.swift */; };
 		2A2405F3201B88D50039493F /* MTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2405F2201B88D50039493F /* MTMainViewController.swift */; };
 		2A2405F5201B8EEE0039493F /* MTArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2405F4201B8EEE0039493F /* MTArticleCell.swift */; };
+		2A3659EE201DC588006FF0B2 /* MTArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3659ED201DC588006FF0B2 /* MTArticleService.swift */; };
+		2A3659F4201DD571006FF0B2 /* MTDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3659F3201DD571006FF0B2 /* MTDetails.storyboard */; };
+		2A3659F6201DD5C5006FF0B2 /* MTDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3659F5201DD5C5006FF0B2 /* MTDetailsViewController.swift */; };
 		2A88C609201CD69000A05231 /* Article+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A88C607201CD69000A05231 /* Article+CoreDataClass.swift */; };
 		2A88C60A201CD69000A05231 /* Article+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A88C608201CD69000A05231 /* Article+CoreDataProperties.swift */; };
-		2A8F0E3F201C8A81008602A7 /* UIImageView+DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8F0E3E201C8A81008602A7 /* UIImageView+DownloadTask.swift */; };
 		2A8F0E41201CB41C008602A7 /* MTCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8F0E40201CB41C008602A7 /* MTCoreDataService.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,9 +42,11 @@
 		2A2405EC201B7FC90039493F /* MTUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTUtils.swift; sourceTree = "<group>"; };
 		2A2405F2201B88D50039493F /* MTMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTMainViewController.swift; sourceTree = "<group>"; };
 		2A2405F4201B8EEE0039493F /* MTArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTArticleCell.swift; sourceTree = "<group>"; };
+		2A3659ED201DC588006FF0B2 /* MTArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTArticleService.swift; sourceTree = "<group>"; };
+		2A3659F3201DD571006FF0B2 /* MTDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MTDetails.storyboard; sourceTree = "<group>"; };
+		2A3659F5201DD5C5006FF0B2 /* MTDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTDetailsViewController.swift; sourceTree = "<group>"; };
 		2A88C607201CD69000A05231 /* Article+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2A88C608201CD69000A05231 /* Article+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2A8F0E3E201C8A81008602A7 /* UIImageView+DownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadTask.swift"; sourceTree = "<group>"; };
 		2A8F0E40201CB41C008602A7 /* MTCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTCoreDataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,7 +80,6 @@
 		2A2405C9201B5DFB0039493F /* MaxTest */ = {
 			isa = PBXGroup;
 			children = (
-				2A8F0E3D201C8A5B008602A7 /* Extensions */,
 				2A2405EE201B84960039493F /* Models */,
 				2A2405E9201B79670039493F /* Utils */,
 				2A2405E2201B5EB70039493F /* Services */,
@@ -110,6 +113,7 @@
 		2A2405E1201B5E910039493F /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				2A3659F2201DD54E006FF0B2 /* DetailsScreen */,
 				2A2405F1201B88BA0039493F /* MainScreen */,
 			);
 			path = Presentation;
@@ -121,6 +125,7 @@
 				2A2405E3201B5ED10039493F /* MTApiService.swift */,
 				2A2405E5201B5EE30039493F /* MTNetworkingService.swift */,
 				2A8F0E40201CB41C008602A7 /* MTCoreDataService.swift */,
+				2A3659ED201DC588006FF0B2 /* MTArticleService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -153,12 +158,13 @@
 			path = MainScreen;
 			sourceTree = "<group>";
 		};
-		2A8F0E3D201C8A5B008602A7 /* Extensions */ = {
+		2A3659F2201DD54E006FF0B2 /* DetailsScreen */ = {
 			isa = PBXGroup;
 			children = (
-				2A8F0E3E201C8A81008602A7 /* UIImageView+DownloadTask.swift */,
+				2A3659F3201DD571006FF0B2 /* MTDetails.storyboard */,
+				2A3659F5201DD5C5006FF0B2 /* MTDetailsViewController.swift */,
 			);
-			path = Extensions;
+			path = DetailsScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +228,7 @@
 			files = (
 				2A2405D8201B5DFB0039493F /* LaunchScreen.storyboard in Resources */,
 				2A2405D5201B5DFB0039493F /* Assets.xcassets in Resources */,
+				2A3659F4201DD571006FF0B2 /* MTDetails.storyboard in Resources */,
 				2A2405D0201B5DFB0039493F /* MTMain.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -233,9 +240,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A8F0E3F201C8A81008602A7 /* UIImageView+DownloadTask.swift in Sources */,
 				2A2405E8201B5F440039493F /* MTApplicationManager.swift in Sources */,
 				2A8F0E41201CB41C008602A7 /* MTCoreDataService.swift in Sources */,
+				2A3659F6201DD5C5006FF0B2 /* MTDetailsViewController.swift in Sources */,
+				2A3659EE201DC588006FF0B2 /* MTArticleService.swift in Sources */,
 				2A2405ED201B7FC90039493F /* MTUtils.swift in Sources */,
 				2A88C609201CD69000A05231 /* Article+CoreDataClass.swift in Sources */,
 				2A2405F5201B8EEE0039493F /* MTArticleCell.swift in Sources */,
@@ -319,7 +327,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -370,7 +378,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -385,7 +393,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PUK34QK43Y;
 				INFOPLIST_FILE = "$(SRCROOT)/MaxTest/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.com.MaxTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -401,7 +409,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PUK34QK43Y;
 				INFOPLIST_FILE = "$(SRCROOT)/MaxTest/SupportingFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.com.MaxTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";

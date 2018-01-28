@@ -6,7 +6,7 @@
 //  Copyright © 2018 Dmitry Ivashin. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class MTApiService {
     
@@ -18,6 +18,16 @@ class MTApiService {
     func getArticles(completionHandler: @escaping (RequestRusult<Any>) -> ())
     {
         return networkingService.getArticles(completionHandler: completionHandler)
+    }
+    
+    func getArticleDetails(id: Int64, completionHandler: @escaping (RequestRusult<Any>) -> ())
+    {
+        return networkingService.getArticleDetails(id: id, completionHandler: completionHandler)
+    }
+    
+    func loadImageWithURL(url: URL, completionHandler: ((UIImage) -> ())? = nil) -> URLSessionDownloadTask
+    {
+        return networkingService.loadImageWithURL(url: url, completionHandler: completionHandler)
     }
     
     // Database

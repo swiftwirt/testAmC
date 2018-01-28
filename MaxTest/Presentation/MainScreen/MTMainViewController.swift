@@ -15,6 +15,10 @@ class MTMainViewController: UITableViewController {
         static let articleCell = "ArticleCell"
     }
     
+    enum SegueIdentifier {
+        static let toDetails = "SegueToDetails"
+    }
+    
     fileprivate let applicationManager = MTApplicationManager.instance()
     
     fileprivate var fetchedResultsController = MTApplicationManager.instance().apiService.coreDataService.getFetchResultsController()
@@ -23,7 +27,6 @@ class MTMainViewController: UITableViewController {
         super.viewDidLoad()
         fetchedResultsController.delegate = self
         performFetch()
-        getArticles()
     }
     
     fileprivate func performFetch()
@@ -32,28 +35,6 @@ class MTMainViewController: UITableViewController {
             try fetchedResultsController.performFetch()
         } catch let error as NSError {
             print("Error: \(error.localizedDescription)")
-        }
-    }
-    
-    fileprivate func getArticles()
-    {
-        applicationManager.apiService.getArticles { [weak self] (result) in
-            guard let StrongSelf = self else { return }
-            
-            performOnMainAsync {
-                StrongSelf.refreshControl?.endRefreshing()
-            }
-            
-            switch result {
-            case .success(let data):
-                if let jsonArray = MTParser.parseJSON(data: data as! Data) {
-                    StrongSelf.applicationManager.apiService.refreshDataBase(with: jsonArray) {
-                        StrongSelf.performFetch()
-                    }
-                }
-            case .failure(let error):
-                print(error)
-            }
         }
     }
     
@@ -69,8 +50,23 @@ class MTMainViewController: UITableViewController {
         return cell
     }
     
+    // Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier! {
+        case SegueIdentifier.toDetails:
+            guard let controller = segue.destination as? MTDetailsViewController, let cell = sender as? MTArticleCell else { return }
+            let detailsHTML = cell.article.contentDetailsHTML
+            controller.htmlString = detailsHTML
+        default:
+            break
+        }
+    }
+    
     @IBAction func onPullToRefresh(_ sender: Any) {
-        getArticles()
+        applicationManager.articleService.uploadArticles { [weak self] in
+            self?.performFetch()
+        }
     }
 }
 
