@@ -36,4 +36,9 @@ class MTApiService {
     {
         coreDataService.refreshDataBase(with: array, completionHandler: completionHandler)
     }
+    
+    func updateEntity(article: Article)
+    {
+        coreDataService.updateEntity(article: article)
+    }
 }

@@ -1,4 +1,4 @@
-//
+ //
 //  MTMainViewController.swift
 //  MaxTest
 //
@@ -21,18 +21,19 @@ class MTMainViewController: UITableViewController {
     
     fileprivate let applicationManager = MTApplicationManager.instance()
     
-    fileprivate var fetchedResultsController = MTApplicationManager.instance().apiService.coreDataService.getFetchResultsController()
+    fileprivate var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchedResultsController.delegate = self
         performFetch()
     }
     
     fileprivate func performFetch()
     {
+        fetchedResultsController = MTApplicationManager.instance().apiService.coreDataService.getFetchResultsController()
+        fetchedResultsController?.delegate = self
         do {
-            try fetchedResultsController.performFetch()
+            try fetchedResultsController?.performFetch()
         } catch let error as NSError {
             print("Error: \(error.localizedDescription)")
         }
@@ -41,13 +42,26 @@ class MTMainViewController: UITableViewController {
     // Data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultsController.fetchedObjects?.count ?? 0
+        return fetchedResultsController?.sections?[section].numberOfObjects ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.articleCell, for: indexPath) as! MTArticleCell
-        cell.article = fetchedResultsController.object(at: indexPath) as! Article
+        configureCell(cell: cell, indexPath: indexPath)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        print(destinationIndexPath)
+    }
+    
+    func configureCell(cell: MTArticleCell, indexPath: IndexPath) {
+        let article = fetchedResultsController?.object(at: indexPath) as! Article
+        cell.article = article
     }
     
     // Segue
@@ -64,9 +78,15 @@ class MTMainViewController: UITableViewController {
     }
     
     @IBAction func onPullToRefresh(_ sender: Any) {
-        applicationManager.articleService.uploadArticles { [weak self] in
-            self?.performFetch()
+        applicationManager.articleService.uploadArticles() { [weak self] in
+            performOnMainAsync {
+                self?.tableView.refreshControl?.endRefreshing()
+            }
         }
+    }
+    
+    deinit {
+        fetchedResultsController?.delegate = nil
     }
 }
 
@@ -84,8 +104,9 @@ extension MTMainViewController: NSFetchedResultsControllerDelegate {
         case .delete:
             tableView.deleteRows(at: [indexPath!], with: .automatic)
         case .update:
+            print(indexPath!)
             let cell = tableView.cellForRow(at: indexPath!) as! MTArticleCell
-            cell.article = fetchedResultsController.object(at: indexPath!) as! Article
+            configureCell(cell: cell, indexPath: indexPath!)
         case .move:
             tableView.deleteRows(at: [indexPath!], with: .automatic)
             tableView.insertRows(at: [newIndexPath!], with: .automatic)
@@ -94,5 +115,24 @@ extension MTMainViewController: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
+                    atIndex sectionIndex: Int,
+                    forChangeType type: NSFetchedResultsChangeType) {
+        
+        let indexSet = NSIndexSet(index: sectionIndex)
+        
+        switch type {
+        case .insert:
+            tableView.insertSections(indexSet as IndexSet,
+                                     with: .automatic)
+        case .delete:
+            tableView.deleteSections(indexSet as IndexSet,
+                                     with: .automatic)
+        default :
+            break
+        }
     }
 }

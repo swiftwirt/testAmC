@@ -4,14 +4,13 @@
         <attribute name="articleID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="contentDetailsHTML" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contentUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="imageMedium" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="imageMediumLink" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="imageThumb" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="imageThumbLink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Article" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Article" positionX="-63" positionY="-18" width="128" height="165"/>
     </elements>
 </model>

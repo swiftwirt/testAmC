@@ -20,11 +20,27 @@ class MTCoreDataService {
     
     // API
     
+    fileprivate func checkIfEntityInBase(id: Int64) -> Bool
+    {
+        let predicate = NSPredicate(format: "articleID == %i", id)
+        let fetchRequest = NSFetchRequest<Article>(entityName: CoreDataUtils.defaultName)
+        fetchRequest.predicate = predicate
+        if let coreDataFetchRequest = try? context.fetch(fetchRequest) {
+            return coreDataFetchRequest.count > 0
+        } else {
+            return false
+        }
+    }
+    
     func refreshDataBase(with array: [[String: Any]], completionHandler: @escaping () -> ())
     {
         clearDataBase()
         
         for dictionary in array {
+            guard !checkIfEntityInBase(id: dictionary[JSONKey.id] as! Int64) else {
+                completionHandler()
+                return
+            }
             let newItem = NSEntityDescription.insertNewObject(forEntityName: CoreDataUtils.defaultName, into: context) as! Article
             newItem.articleID = dictionary[JSONKey.id] as! Int64
             newItem.title = dictionary[JSONKey.title] as? String
@@ -37,25 +53,45 @@ class MTCoreDataService {
                 newItem.contentDetailsHTML = try? String(contentsOf: url)
             }
         }
-        
         saveContext()
         completionHandler()
     }
     
-    private func clearDataBase()
+    func updateEntity(article: Article, changedPositionInList: Bool = false)
     {
-        let entities = managedObjectModel.entities
-        for entity in entities {
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity.name!)
-            let deleteReqest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-            do {
-                try context.execute(deleteReqest)
-            } catch {
-                print(error)
-            }
+        let predicate = NSPredicate(format: "articleID == %i", article.articleID)
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CoreDataUtils.defaultName)
+        fetchRequest.predicate = predicate
+        
+        do {
+            let fetchedEntities = try self.context.fetch(fetchRequest) as! [Article]
+            fetchedEntities.first?.articleID = article.articleID
+            fetchedEntities.first?.contentDetailsHTML = article.contentDetailsHTML
+            fetchedEntities.first?.contentUrl = article.contentUrl
+            fetchedEntities.first?.imageData = article.imageData
+            fetchedEntities.first?.imageMediumLink = article.imageMediumLink
+            fetchedEntities.first?.imageThumbLink = article.imageThumbLink
+            fetchedEntities.first?.title = article.title
+            fetchedEntities.first?.timeStamp = changedPositionInList ? NSDate() : article.timeStamp
+        } catch {
+            fatalError()
         }
         
         saveContext()
+    }
+    
+    private func clearDataBase()
+    {
+        do {
+            let fetchRequest = try fetchAllManagedObjectContext.fetch(Article.fetchRequest())
+            for index in fetchRequest {
+                fetchAllManagedObjectContext.delete(index as! NSManagedObject)
+            }
+        } catch {
+            fatalError()
+        }
+        
     }
     
     func getFetchResultsController(for entityName: String = CoreDataUtils.defaultName, with sortDescriptors: [NSSortDescriptor] = CoreDataUtils.defaultSortDescriptors, ascending: Bool = true) -> NSFetchedResultsController<NSFetchRequestResult>
@@ -63,9 +99,9 @@ class MTCoreDataService {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetchRequest.sortDescriptors = sortDescriptors
         return NSFetchedResultsController(fetchRequest: fetchRequest,
-                                       managedObjectContext: context,
-                                       sectionNameKeyPath: nil,
-                                       cacheName: CoreDataUtils.cacheName)
+                                          managedObjectContext: context,
+                                          sectionNameKeyPath: nil,
+                                          cacheName: nil)
     }
     
     // Stack settitngs
@@ -76,6 +112,13 @@ class MTCoreDataService {
         var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         
         managedObjectContext.persistentStoreCoordinator = self.psc
+        return managedObjectContext
+    }()
+    
+    lazy var fetchAllManagedObjectContext: NSManagedObjectContext = {
+        let coordinator = self.psc
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()
     

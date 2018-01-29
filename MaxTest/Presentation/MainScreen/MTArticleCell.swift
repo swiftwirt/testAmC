@@ -20,45 +20,26 @@ class MTArticleCell: UITableViewCell {
         didSet {
             articleTitleLabel.text = article.title
             uploadMediaContent(for: article)
-            uploadDetails(for: article.articleID)
         }
-    }
-    
-    fileprivate func uploadDetails(for articleID: Int64)
-    {
-        appManager.apiService.getArticleDetails(id: articleID) { [weak self] (result) in
-            switch result {
-            case .success(let data):
-                print(data)
-            case .failure(let error):
-                print(error)
-            }
-         }
     }
     
     fileprivate func uploadMediaContent(for article: Article)
     {
-        var hightPriorityLink: String? { //
+        guard article.imageData == nil else {
+            articleImageView.image = UIImage(data: article.imageData! as Data)
+            return }
+        
+        var primeLink: String? { // Only nessesary image download
             return appManager.currentDevice ~= .phone ? article.imageThumbLink : article.imageMediumLink
         }
         
-        var lowPriorityLink: String? { //
-            return appManager.currentDevice ~= .phone ? article.imageMediumLink : article.imageThumbLink
-        }
-        
-        if let link = hightPriorityLink, let url = URL(string: link) {
+        if let link = primeLink, let url = URL(string: link) {
             downloadTask = appManager.apiService.networkingService.loadImageWithURL(url: url) { [weak self] image in
+                article.imageData = UIImagePNGRepresentation(image) as NSData?
                 self?.articleImageView.image = image
                 self?.downloadTask?.resume()
                 
-                self?.articleImageView.image = image
-                
-                if let link = lowPriorityLink, let url = URL(string: link) {
-                    self?.downloadTask = self?.appManager.apiService.networkingService.loadImageWithURL(url: url) { [weak self] image in
-                        
-                        self?.downloadTask?.resume()
-                    }
-                }
+                self?.appManager.apiService.updateEntity(article: article)
             }
         }
     }

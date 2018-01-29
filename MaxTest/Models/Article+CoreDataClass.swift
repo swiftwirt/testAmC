@@ -2,7 +2,7 @@
 //  Article+CoreDataClass.swift
 //  MaxTest
 //
-//  Created by Dmitry Ivashin on 1/27/18.
+//  Created by Dmitry Ivashin on 1/29/18.
 //  Copyright © 2018 Dmitry Ivashin. All rights reserved.
 //
 //
